@@ -15,6 +15,10 @@ send-sds: $(sources) $(headers)
 receive-sds: $(sources) $(headers)
 	$(compiler) $(compiler_flags) -o $@ receive-sds.c $(sources) $(libraries)
 
-.PHONY: clean
 clean:
 	-$(rm) receive-sds send-sds *.log *~
+
+image:
+	docker build -t bsorahan/send-sds .
+
+.PHONY: all clean image
